@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>👑 你的隱藏佔有慾有多高？</title>
+<meta property="og:title" content="👑 你的隱藏佔有慾有多高？">
+<meta property="og:description" content="有人說自己很佛系，但看到另一半跟異性聊天還是會心裡一緊。你的佔有慾，可能比你以為的高一點——也可能比你以為的低。">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -93,13 +96,11 @@ h1 em{font-style:normal;color:var(--amber);font-weight:300}
 
 .btn-retry{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:transparent;border:1px solid var(--border-h);border-radius:50px;color:var(--muted);font-family:'Noto Sans TC',sans-serif;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .3s}
 .btn-retry:hover{background:var(--cream);color:var(--amber);border-color:var(--amber)}
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--amber);color:#fff;padding:10px 24px;border-radius:50px;font-size:13px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:99;white-space:nowrap}
-.toast.show{opacity:1}
+
 </style>
 </head>
 <body>
 <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div>
-<div class="toast" id="toast">資料已送出 ✓</div>
 <div class="wrap">
 
 <section id="intro">
@@ -337,8 +338,7 @@ function showResult(){
 
   const payload={result:r.type,score:totalScore};
   answers.forEach((a,i)=>{payload['Q'+(i+1)]=a.answer;});
-  fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
-    .then(()=>{const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);})
+    fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
     .catch(()=>{});
 }
 
